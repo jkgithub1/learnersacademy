@@ -23,4 +23,13 @@ public class ClassEntity {
 		this.name = name;
 	}
 	
+	public ClassEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "ClassEntity [id=" + id + ", name=" + name + "]";
+	}
+	
 }

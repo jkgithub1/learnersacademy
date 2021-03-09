@@ -31,7 +31,7 @@ String uname=(String)session.getAttribute("uname");
           Master
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="class.jsp">Class</a>
+          <a class="dropdown-item" href="Class">Class</a>
           <a class="dropdown-item" href="subject.jsp">Subject</a>
            <a class="dropdown-item" href="teacher.jsp">Teacher</a>
           <div class="dropdown-divider"></div>
