@@ -26,7 +26,10 @@ int i=1;
 <tr>
 <td><%=i %></td>
 <td><%=e.getName() %></td>
-<td></td>
+<td>                    	<a href="ClassEdit?id=<%= e.getId() %>">Edit</a>
+                    	&nbsp;&nbsp;&nbsp;&nbsp;
+                    	                   	
+</td>
 </tr> 
 <% i++; } %> 
 </tbody>

@@ -37,6 +37,7 @@ public class Class extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ClassHandler ch = new ClassHandler();
+		
 		List<ClassEntity> lst = ch.classList();
 		
 		request.setAttribute("data", lst); 

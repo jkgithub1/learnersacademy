@@ -7,12 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.entity.ClassEntity;
+import com.handler.ClassHandler;
+
 /**
  * Servlet implementation class ClassEdit
  */
 @WebServlet("/ClassEdit")
 public class ClassEdit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	public ClassHandler ch;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -20,6 +25,7 @@ public class ClassEdit extends HttpServlet {
     public ClassEdit() {
         super();
         // TODO Auto-generated constructor stub
+        ch = new ClassHandler();
     }
 
 	/**
@@ -27,7 +33,12 @@ public class ClassEdit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		ClassEntity c =  ch.loadSpecific(Integer.parseInt(request.getParameter("id")));
+		
+		request.setAttribute("data", c); 
+		
+		request.getRequestDispatcher("classedit.jsp").forward(request, response); 
+
 	}
 
 	/**
@@ -35,7 +46,9 @@ public class ClassEdit extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		ch.update(Integer.parseInt(request.getParameter("classid")),request.getParameter("name"));
+	    
+		response.sendRedirect("Class");
 	}
 
 }
