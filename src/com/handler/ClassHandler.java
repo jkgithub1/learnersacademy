@@ -48,7 +48,7 @@ public class ClassHandler {
 		
 		Transaction tx = session.beginTransaction();
 		
-		ClassEntity c = (ClassEntity)session.get(ClassEntity.class, 102); 
+		ClassEntity c = (ClassEntity)session.get(ClassEntity.class, id); 
 		
 		c.setName(name);
 		
@@ -57,6 +57,20 @@ public class ClassHandler {
 		tx.commit();
 	}
 
+	public void delete(int id) {
+		
+		Session session= HibernateUtility.getSession();
+		
+		Transaction tx = session.beginTransaction();
+		
+		ClassEntity c= new ClassEntity();
+		
+		c.setId(id);
+		
+		session.delete(c);
+		
+		tx.commit();
+	}
 	
 	
 }

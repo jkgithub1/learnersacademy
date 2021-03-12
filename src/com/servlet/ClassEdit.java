@@ -1,6 +1,8 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,6 +48,12 @@ public class ClassEdit extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		PrintWriter out = response.getWriter();
+		
+		out.print(request.getParameter("classid"));
+		out.print(request.getParameter("name"));
+		
 		ch.update(Integer.parseInt(request.getParameter("classid")),request.getParameter("name"));
 	    
 		response.sendRedirect("Class");
