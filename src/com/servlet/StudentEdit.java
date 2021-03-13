@@ -9,25 +9,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.entity.SubjectEntity;
-import com.handler.SubjectHandler;
+import com.entity.StudentEntity;
+import com.handler.StudentHandler;
 
 /**
- * Servlet implementation class SubjectEdit
+ * Servlet implementation class StudentEdit
  */
-@WebServlet("/SubjectEdit")
-public class SubjectEdit extends HttpServlet {
+@WebServlet("/StudentEdit")
+public class StudentEdit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public SubjectHandler handler;
+	public StudentHandler handler;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SubjectEdit() {
+    public StudentEdit() {
         super();
         // TODO Auto-generated constructor stub
-        handler = new SubjectHandler();
+        handler = new StudentHandler();
     }
 
 	/**
@@ -35,11 +35,11 @@ public class SubjectEdit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		SubjectEntity c =  handler.loadSpecific(Integer.parseInt(request.getParameter("id")));
+		StudentEntity c =  handler.loadSpecific(Integer.parseInt(request.getParameter("id")));
 		
 		request.setAttribute("data", c); 
 		
-		request.getRequestDispatcher("subjectedit.jsp").forward(request, response); 
+		request.getRequestDispatcher("studentedit.jsp").forward(request, response); 
 
 	}
 
@@ -51,12 +51,9 @@ public class SubjectEdit extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
-		out.print(request.getParameter("id"));
-		out.print(request.getParameter("name"));
-		
-		handler.update(Integer.parseInt(request.getParameter("id")),request.getParameter("name"));
+		handler.update(Integer.parseInt(request.getParameter("id")),request.getParameter("name"),request.getParameter("email"),request.getParameter("city"),Integer.parseInt(request.getParameter("fkClassId")));
 	    
-		response.sendRedirect("Subject");
+		response.sendRedirect("Student");
 	}
 
 }

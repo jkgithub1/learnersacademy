@@ -1,7 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,25 +9,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.entity.SubjectEntity;
-import com.handler.SubjectHandler;
+
+import com.entity.StudentEntity;
+import com.handler.StudentHandler;
 
 /**
- * Servlet implementation class SubjectEdit
+ * Servlet implementation Student Student
  */
-@WebServlet("/SubjectEdit")
-public class SubjectEdit extends HttpServlet {
+@WebServlet("/Student")
+public class Student extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	public SubjectHandler handler;
+	private StudentHandler handler;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SubjectEdit() {
+    public Student() {
         super();
         // TODO Auto-generated constructor stub
-        handler = new SubjectHandler();
+        handler = new StudentHandler();
     }
 
 	/**
@@ -35,11 +35,17 @@ public class SubjectEdit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		SubjectEntity c =  handler.loadSpecific(Integer.parseInt(request.getParameter("id")));
 		
-		request.setAttribute("data", c); 
+		if(request.getParameter("id")!=null) {
+			
+			int id =Integer.parseInt(request.getParameter("id"));
+			
+			handler.delete(id);
+
+		}
 		
-		request.getRequestDispatcher("subjectedit.jsp").forward(request, response); 
+		// TODO Auto-generated method stub
+		request.getRequestDispatcher("studentlist.jsp").forward(request, response); 
 
 	}
 
@@ -48,15 +54,12 @@ public class SubjectEdit extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		StudentEntity obj= new StudentEntity(request.getParameter("name"),request.getParameter("email"),request.getParameter("city"),Integer.parseInt(request.getParameter("fkClassId")));
 		
-		PrintWriter out = response.getWriter();
+		handler.add(obj);
 		
-		out.print(request.getParameter("id"));
-		out.print(request.getParameter("name"));
+		response.sendRedirect("Student");
 		
-		handler.update(Integer.parseInt(request.getParameter("id")),request.getParameter("name"));
-	    
-		response.sendRedirect("Subject");
 	}
 
 }

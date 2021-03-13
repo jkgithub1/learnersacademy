@@ -9,25 +9,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.entity.SubjectEntity;
-import com.handler.SubjectHandler;
+import com.entity.TeacherEntity;
+import com.handler.TeacherHandler;
 
 /**
- * Servlet implementation class SubjectEdit
+ * Servlet implementation class TeacherEdit
  */
-@WebServlet("/SubjectEdit")
-public class SubjectEdit extends HttpServlet {
+@WebServlet("/TeacherEdit")
+public class TeacherEdit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public SubjectHandler handler;
+	public TeacherHandler handler;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SubjectEdit() {
+    public TeacherEdit() {
         super();
         // TODO Auto-generated constructor stub
-        handler = new SubjectHandler();
+        handler = new TeacherHandler();
     }
 
 	/**
@@ -35,11 +35,11 @@ public class SubjectEdit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		SubjectEntity c =  handler.loadSpecific(Integer.parseInt(request.getParameter("id")));
+		TeacherEntity c =  handler.loadSpecific(Integer.parseInt(request.getParameter("id")));
 		
 		request.setAttribute("data", c); 
 		
-		request.getRequestDispatcher("subjectedit.jsp").forward(request, response); 
+		request.getRequestDispatcher("teacheredit.jsp").forward(request, response); 
 
 	}
 
@@ -51,12 +51,9 @@ public class SubjectEdit extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
-		out.print(request.getParameter("id"));
-		out.print(request.getParameter("name"));
-		
-		handler.update(Integer.parseInt(request.getParameter("id")),request.getParameter("name"));
+		handler.update(Integer.parseInt(request.getParameter("id")),request.getParameter("name"),request.getParameter("email"),request.getParameter("city"));
 	    
-		response.sendRedirect("Subject");
+		response.sendRedirect("Teacher");
 	}
 
 }

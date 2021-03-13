@@ -31,6 +31,8 @@
 
        <mapping class="com.entity.ClassEntity"/>
        <mapping class="com.entity.SubjectEntity"/>
+       <mapping class="com.entity.TeacherEntity"/>
+       <mapping class="com.entity.StudentEntity"/>
       
        
  

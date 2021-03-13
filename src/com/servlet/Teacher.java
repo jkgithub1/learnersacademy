@@ -1,7 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,25 +9,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.entity.SubjectEntity;
-import com.handler.SubjectHandler;
+
+import com.entity.TeacherEntity;
+import com.handler.TeacherHandler;
 
 /**
- * Servlet implementation class SubjectEdit
+ * Servlet implementation Teacher Teacher
  */
-@WebServlet("/SubjectEdit")
-public class SubjectEdit extends HttpServlet {
+@WebServlet("/Teacher")
+public class Teacher extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	public SubjectHandler handler;
+	private TeacherHandler handler;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SubjectEdit() {
+    public Teacher() {
         super();
         // TODO Auto-generated constructor stub
-        handler = new SubjectHandler();
+        handler = new TeacherHandler();
     }
 
 	/**
@@ -35,11 +35,21 @@ public class SubjectEdit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		SubjectEntity c =  handler.loadSpecific(Integer.parseInt(request.getParameter("id")));
 		
-		request.setAttribute("data", c); 
+		if(request.getParameter("id")!=null) {
+			
+			int id =Integer.parseInt(request.getParameter("id"));
+			
+			handler.delete(id);
+
+		}
 		
-		request.getRequestDispatcher("subjectedit.jsp").forward(request, response); 
+		// TODO Auto-generated method stub
+		List<TeacherEntity> lst = handler.list();
+		
+		request.setAttribute("data", lst); 
+		
+		request.getRequestDispatcher("teacherlist.jsp").forward(request, response); 
 
 	}
 
@@ -48,15 +58,12 @@ public class SubjectEdit extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		TeacherEntity obj= new TeacherEntity(request.getParameter("name"),request.getParameter("email"),request.getParameter("city"));
 		
-		PrintWriter out = response.getWriter();
+		handler.add(obj);
 		
-		out.print(request.getParameter("id"));
-		out.print(request.getParameter("name"));
+		response.sendRedirect("Teacher");
 		
-		handler.update(Integer.parseInt(request.getParameter("id")),request.getParameter("name"));
-	    
-		response.sendRedirect("Subject");
 	}
 
 }
