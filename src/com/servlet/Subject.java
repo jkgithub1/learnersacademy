@@ -1,12 +1,13 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 
 import com.entity.SubjectEntity;
@@ -18,6 +19,7 @@ import com.handler.SubjectHandler;
 @WebServlet("/Subject")
 public class Subject extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private SubjectHandler handler;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -25,6 +27,7 @@ public class Subject extends HttpServlet {
     public Subject() {
         super();
         // TODO Auto-generated constructor stub
+        handler = new SubjectHandler();
     }
 
 	/**
@@ -32,7 +35,22 @@ public class Subject extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		if(request.getParameter("id")!=null) {
+			
+			int id =Integer.parseInt(request.getParameter("id"));
+			
+			handler.delete(id);
+
+		}
+		
+		// TODO Auto-generated method stub
+		List<SubjectEntity> lst = handler.list();
+		
+		request.setAttribute("data", lst); 
+		
+		request.getRequestDispatcher("subjectlist.jsp").forward(request, response); 
+
 	}
 
 	/**
@@ -42,9 +60,7 @@ public class Subject extends HttpServlet {
 		// TODO Auto-generated method stub
 		SubjectEntity obj= new SubjectEntity(request.getParameter("name"));
 		
-		SubjectHandler ch = new SubjectHandler();
-		
-		ch.addSubject(obj);
+		handler.add(obj);
 		
 		response.sendRedirect("Subject");
 		

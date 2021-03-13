@@ -32,10 +32,10 @@ String uname=(String)session.getAttribute("uname");
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="Class">Class</a>
-          <a class="dropdown-item" href="subject.jsp">Subject</a>
-           <a class="dropdown-item" href="teacher.jsp">Teacher</a>
+          <a class="dropdown-item" href="Subject">Subject</a>
+           <a class="dropdown-item" href="Teacher">Teacher</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="student.jsp">Student</a>
+          <a class="dropdown-item" href="Student">Student</a>
         </div>
       </li>
       
