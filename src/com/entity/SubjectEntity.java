@@ -10,23 +10,23 @@ import javax.persistence.Table;
 public class SubjectEntity {
 	@Id
 	@GeneratedValue
-	private int id;
+	private int subjectid;
 	public int getId() {
-		return id;
+		return subjectid;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.subjectid = id;
 	}
-	private String name;
+	private String subjectName;
 	public SubjectEntity(String name) {
 		super();
-		this.name = name;
+		this.subjectName = name;
 	}
 	public String getName() {
-		return name;
+		return subjectName;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.subjectName = name;
 	}
 	public SubjectEntity() {
 		super();

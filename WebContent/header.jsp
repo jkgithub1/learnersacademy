@@ -38,7 +38,9 @@ String uname=(String)session.getAttribute("uname");
           <a class="dropdown-item" href="Student">Student</a>
         </div>
       </li>
-      
+       <li class="nav-item">
+        <a class="nav-link" href="Assign">Teacher/Subject Assign </a>
+      </li>
      
       
     

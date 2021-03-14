@@ -10,19 +10,19 @@ import javax.persistence.Table;
 public class TeacherEntity {
 	@Id
 	@GeneratedValue
-	private int id;
+	private int teacherid;
 	public int getId() {
-		return id;
+		return teacherid;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.teacherid = id;
 	}
-	private String name;
+	private String teacherName;
 	public String getName() {
-		return name;
+		return teacherName;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.teacherName = name;
 	}
 	public String getEmail() {
 		return email;
@@ -39,7 +39,7 @@ public class TeacherEntity {
 	private String email;
 	public TeacherEntity(String name, String email, String city) {
 		super();
-		this.name = name;
+		this.teacherName = name;
 		this.email = email;
 		this.city = city;
 	}

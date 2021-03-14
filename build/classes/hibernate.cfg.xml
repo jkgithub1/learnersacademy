@@ -33,6 +33,7 @@
        <mapping class="com.entity.SubjectEntity"/>
        <mapping class="com.entity.TeacherEntity"/>
        <mapping class="com.entity.StudentEntity"/>
+       <mapping class="com.entity.AssignEntity"/>
       
        
  
