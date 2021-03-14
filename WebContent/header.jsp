@@ -18,7 +18,7 @@ String uname=(String)session.getAttribute("uname");
 %>
 
 <% if(uname!= null){ %>
- <div style="float:right;"><a href="">Logout</a></div>
+ <div style="float:right;"><a href="Logout">Logout</a></div>
  <br>
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
   
@@ -42,6 +42,15 @@ String uname=(String)session.getAttribute("uname");
         <a class="nav-link" href="Assign">Teacher/Subject Assign </a>
       </li>
      
+     <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Reports
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="studentreport.jsp">Student</a>
+          <a class="dropdown-item" href="teacherreport.jsp">Subject/Teacher</a>
+        </div>
+      </li>
       
     
     </ul>

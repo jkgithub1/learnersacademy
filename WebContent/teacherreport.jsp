@@ -21,7 +21,7 @@ if(request.getParameter("fkClassId")!=null) {
 }
 
 %>
-<h3>Student Report</h3>
+<h3>Teacher Report</h3>
  
 <form name="" method="get">
 
@@ -62,7 +62,7 @@ if(request.getParameter("fkClassId")!=null) {
 
 <%  if(request.getParameter("fkClassId")!=null) { 
 
-	SQLQuery query = session1.createSQLQuery("SELECT * FROM student s where s.fkclassid=:fkclassid");
+	SQLQuery query = session1.createSQLQuery("SELECT a.assignid,s.subjectname,t.teachername FROM  assignteacher a,subject s,teacher t WHERE  a.fksubjectid=s.subjectid AND a.fkteacherid=t.teacherid AND a.fkclassid=:fkclassid");
 
 	query.setParameter("fkclassid", fkClassId);
 
@@ -76,9 +76,8 @@ if(request.getParameter("fkClassId")!=null) {
 <thead>
   <tr>
     <th>SNo</th>
-    <th>Student Name</th>
-    <th>Email</th>
-    <th>city</th>
+    <th>Teacher</th>
+    <th>Subject</th>
   </tr>
 </thead>
 <tbody>
@@ -91,9 +90,9 @@ if(request.getParameter("fkClassId")!=null) {
 
 <tr>
 <td><%=i %></td>
-<td><%=row[4].toString() %></td>
 <td><%=row[2].toString() %></td>
 <td><%=row[1].toString() %></td>
+
 </tr> 
 <% i++; } %> 
 </tbody>
